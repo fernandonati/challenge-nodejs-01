@@ -41,6 +41,15 @@ class TransactionsRepository {
     return balance;
   }
 
+public getTotalIncome() : number {
+    // recupera o total.
+    const income = this.transactions.reduce((totalin,row) =>       
+       row.type === "income"? totalin + row.value : totalin  
+    ,0);
+  return income;
+}
+
+
   public create({title,value,type}: createTransaction): Transaction {    
     const transaction = new Transaction({title,value,type});
     this.transactions.push(transaction);    
